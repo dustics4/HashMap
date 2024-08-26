@@ -34,6 +34,10 @@ class HashMap {
         bucket.push([key,value]);
         size++;
     }
+
+    get(value){
+        
+    }
 }
 
 const test = new HashMap();
