@@ -15,14 +15,15 @@ class HashMap {
     }
 
     set(key, value){
+    //calls hash method to get the index where they key-value is stored
         let index = this.hash(key);
-
+    //check if calculated index is within bounds
         if (index < 0 || index >= this.buckets.length) {
             throw new Error("Trying to access index out of bound");
-          }
-
+        }
+    //if no buckets in array it creates an empty array
         if(!this.buckets[index]) this.buckets[index] = [];
-
+    //If the 
         let bucket = this.buckets[index];
         for(let i = 0; i < bucket.length; i++){
             const [storedKey] = bucket[i];
@@ -51,6 +52,11 @@ class HashMap {
         }
         return null;
     }
+//returns true if key is found in bucket, else false
+    has(key){
+//class the get method and checks if it returns a non null value
+        return this.get(key) !== null;
+    }
 }
 
 const test = new HashMap();
@@ -69,3 +75,4 @@ test.set('kite', 'pink')
 test.set('lion', 'golden')
 
 console.log(test.get('kite'));
+console.log(test.has('lion'));
