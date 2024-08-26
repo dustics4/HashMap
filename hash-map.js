@@ -24,7 +24,7 @@ class HashMap {
         if(!this.buckets[index]) this.buckets[index] = [];
 
         let bucket = this.buckets[index];
-        for(let i = 0; i < buckets.length; i++){
+        for(let i = 0; i < bucket.length; i++){
             const [storedKey] = bucket[i];
             if(storedKey === key){
                 bucket[i][1] = value;
@@ -32,11 +32,24 @@ class HashMap {
             }
         }
         bucket.push([key,value]);
-        size++;
+        this.size++;
     }
 
-    get(value){
-        
+    get(key){
+        let index = this.hash(key);
+
+        if (index < 0 || index >= this.buckets.length) {
+            throw new Error("Trying to access index out of bound");
+        }
+
+        let bucket  = this.buckets[index];
+
+        if(bucket){
+            for(let [storedKey, value] of bucket){
+                if(storedKey === key) return value;
+            }
+        }
+        return null;
     }
 }
 
@@ -54,3 +67,5 @@ test.set('ice cream', 'white')
 test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
+
+console.log(test.get('kite'));
