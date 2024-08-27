@@ -57,7 +57,8 @@ class HashMap {
 //class the get method and checks if it returns a non null value
         return this.get(key) !== null;
     }
-
+//takes a key as an argument. If the given key is in the hash map, it should remove the entry with that key and return true. 
+//If the key isn’t in the hash map, it should return false
     remove(key){
         let index = this.hash(key);
 
@@ -76,6 +77,10 @@ class HashMap {
         }
         return false
 
+    }
+//returns the number of stored keys in the hashmap
+    length(){
+        return this.size;
     }
 }
 
@@ -98,3 +103,4 @@ console.log(test.get('kite')); // "pink"
 console.log(test.has('lion')); // true
 test.remove('lion');
 console.log(test.has('lion')); // false
+console.log(test.length()); //11
