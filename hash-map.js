@@ -89,8 +89,13 @@ class HashMap {
        this.size = 0;
     }
     
-    keys(key){
-        let index = this.hash(key);
+    keys(){
+        let keysArray = [];
+
+        this.buckets.forEach(bucket => {
+            //if there is a bucket element
+            //bucket.forEach - key element . push into the key into the keys array.
+        })
     }
 }
 
