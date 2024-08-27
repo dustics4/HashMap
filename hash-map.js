@@ -89,6 +89,9 @@ class HashMap {
        this.size = 0;
     }
     
+    keys(key){
+        let index = this.hash(key);
+    }
 }
 
 const test = new HashMap();
