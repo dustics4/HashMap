@@ -88,7 +88,7 @@ class HashMap {
        this.buckets = new Array(4);
        this.size = 0;
     }
-    
+ //Method to display all the keys   
     keys(){
         let keysArray = [];
 
@@ -104,10 +104,10 @@ class HashMap {
 
         return keysArray;
     }
-
+//Method to display all the values
     values(){
         let valueArray = []
-
+//Loop each element if the bucket, if it exists. Loop through the values in the bucket. Then push them into the array
         this.buckets.forEach(bucket =>{
             if(bucket){
                 bucket.forEach(([,value]) => {
@@ -116,6 +116,19 @@ class HashMap {
             }
         })
         return valueArray;
+    }
+
+    entries(){
+       let entriesArray = [];
+       
+       this.buckets.forEach(bucket => {
+        if(bucket){
+            bucket.forEach(([key, value]) => {
+                entriesArray.push(key, value);
+            })
+        }
+       })
+       return entriesArray;
     }
 }
 
@@ -141,5 +154,6 @@ console.log(test.has('lion')); // false
 console.log(test.length()); //11
 console.log(test.keys()); //  [ 'apple' ],     [ 'banana' ], [ 'carrot' ],    [ 'dog' ], [ 'elephant' ],  [ 'frog' ], [ 'grape' ],     [ 'hat' ], [ 'ice cream' ], [ 'jacket' ], [ 'kite' ]
 console.log(test.values()); // 'red',    'yellow','orange', 'brown','gray',   'green','purple', 'black','white',  'blue','pink']
+console.log(test.entries()); // logs keys and values
 test.clear();
 console.log(test.length()); //0
