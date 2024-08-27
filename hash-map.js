@@ -82,6 +82,13 @@ class HashMap {
     length(){
         return this.size;
     }
+
+    clear(){
+       //reset all buckets and initialize size
+       this.buckets = new Array(4);
+       this.size = 0;
+    }
+    
 }
 
 const test = new HashMap();
@@ -104,3 +111,5 @@ console.log(test.has('lion')); // true
 test.remove('lion');
 console.log(test.has('lion')); // false
 console.log(test.length()); //11
+test.clear();
+console.log(test.length()); //0
