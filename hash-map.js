@@ -93,9 +93,16 @@ class HashMap {
         let keysArray = [];
 
         this.buckets.forEach(bucket => {
+            if(bucket){
+                bucket.forEach(([key]) =>{
+                    keysArray.push([key]);
+                })
+            }
             //if there is a bucket element
             //bucket.forEach - key element . push into the key into the keys array.
         })
+
+        return keysArray;
     }
 }
 
@@ -119,5 +126,6 @@ console.log(test.has('lion')); // true
 test.remove('lion');
 console.log(test.has('lion')); // false
 console.log(test.length()); //11
+console.log(test.keys()); //  [ 'apple' ],     [ 'banana' ], [ 'carrot' ],    [ 'dog' ], [ 'elephant' ],  [ 'frog' ], [ 'grape' ],     [ 'hat' ], [ 'ice cream' ], [ 'jacket' ], [ 'kite' ]
 test.clear();
 console.log(test.length()); //0
