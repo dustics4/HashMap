@@ -104,6 +104,19 @@ class HashMap {
 
         return keysArray;
     }
+
+    values(){
+        let valueArray = []
+
+        this.buckets.forEach(bucket =>{
+            if(bucket){
+                bucket.forEach(([,value]) => {
+                    valueArray.push(value);
+                })
+            }
+        })
+        return valueArray;
+    }
 }
 
 const test = new HashMap();
@@ -127,5 +140,6 @@ test.remove('lion');
 console.log(test.has('lion')); // false
 console.log(test.length()); //11
 console.log(test.keys()); //  [ 'apple' ],     [ 'banana' ], [ 'carrot' ],    [ 'dog' ], [ 'elephant' ],  [ 'frog' ], [ 'grape' ],     [ 'hat' ], [ 'ice cream' ], [ 'jacket' ], [ 'kite' ]
+console.log(test.values()); // 'red',    'yellow','orange', 'brown','gray',   'green','purple', 'black','white',  'blue','pink']
 test.clear();
 console.log(test.length()); //0
