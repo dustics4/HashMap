@@ -57,6 +57,26 @@ class HashMap {
 //class the get method and checks if it returns a non null value
         return this.get(key) !== null;
     }
+
+    remove(key){
+        let index = this.hash(key);
+
+        if (index < 0 || index >= this.buckets.length) {
+            throw new Error("Trying to access index out of bound");
+        }
+
+        let bucket = this.buckets[index];
+        for(let i = 0; i < bucket.length; i++){
+            let [storedKey] = bucket[i];
+            if(storedKey === key){
+                bucket.splice(i, 1);
+                this.size--
+                return true;
+            }
+        }
+        return false
+
+    }
 }
 
 const test = new HashMap();
@@ -74,5 +94,7 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 
-console.log(test.get('kite'));
-console.log(test.has('lion'));
+console.log(test.get('kite')); // "pink"
+console.log(test.has('lion')); // true
+test.remove('lion');
+console.log(test.has('lion')); // false
