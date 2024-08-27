@@ -2,6 +2,7 @@ class HashMap {
     constructor(){
         this.buckets = new Array(4); // Initializing with a fixed size
         this.size = 0;
+        this.threshHold = 0.75;
     }
 //takes in a key and produces a hashcode with it
     hash(key){
@@ -12,6 +13,20 @@ class HashMap {
             hashCode = (primeNumber * hashCode * key.charCodeAt(char) % this.buckets.length);
         }
         return hashCode;
+    }
+
+    resize(){
+        let oldBucket = this.buckets;
+        this.buckets = new Array(oldBucket.length * 2);
+        this.size = 0;
+
+        oldBucket.forEach((bucket) =>{
+            if(bucket){
+                bucket.forEach(([key, value]) => {
+                    this.set(key, value);
+                })
+            }
+        })
     }
 
     set(key, value){
@@ -117,7 +132,7 @@ class HashMap {
         })
         return valueArray;
     }
-
+//Displays all entries e.g key and value
     entries(){
        let entriesArray = [];
        
